@@ -1,0 +1,16 @@
+.progress-container {
+  width: 100%;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: raw;
+  place-content: center;
+  margin: 20px;
+}
+
+.progress-element {
+  background-color: rgb(228, 242, 232);
+}
+
+.loading {
+  background-color: rgb(0, 255, 128);
+}

@@ -1,0 +1,86 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.rules-container {
+  border: 1px dotted blue;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+ul {
+  margin-left: 40px;
+  margin-bottom: 10px;
+}
+
+li {
+  padding-bottom: 8px;
+  text-decoration: dotted;
+  font-size: 16px;
+  text-align: left;
+}
+
+h3 {
+  margin: 8px 16px 16px 16px;
+  max-width: 340px;
+  color: #f56410;
+
+  transition: 0.7s ease;
+}
+
+h3:hover {
+  color: rgb(251, 152, 47);
+}
+
+p {
+  margin: 10px 20px;
+  font-weight: 800;
+}
+
+label {
+  font-size: 16px;
+}
+form span {
+  font-size: 14px;
+  color: gray;
+}
+
+input {
+  font-size: 14px;
+  margin: 8px 10px 8px 12px;
+  height: 28px;
+  max-width: 120px;
+  padding-left: 6px;
+  border: 1px solid rgba(168, 168, 168, 0.549);
+  border-radius: 3px;
+}
+input:active {
+  border: 1px solid rgba(102, 153, 247, 0.549);
+  border-radius: 3px;
+}
+
+/* CSS button*/
+form button {
+  background-color: #ea4c89;
+  border-radius: 3px;
+  color: #ffffff;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 5px 12px;
+
+  transition: color 100ms;
+
+  touch-action: manipulation;
+}
+
+form button:disabled {
+  background-color: #fcfbfb;
+  border: 1px solid gray;
+  border-radius: 3px;
+  color: #5f5f5f;
+  cursor: not-allowed;
+}

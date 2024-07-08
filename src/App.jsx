@@ -1,35 +1,82 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { Quizz } from "./components/Quizz";
+import { Homepage } from "./components/Homepage";
+import { Advertising } from "./components/Advertising";
+import { Result } from "./components/Result";
+import { useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [currentPage, setCurrentPage] = useState("Homepage");
+  const [showResult, setShowResult] = useState(false);
+
+  let componentToDisplay;
+  let buttontext = "Quizz starten";
+
+  const [score, setScore] = useState(0);
+
+  function handleCorrectAnswer() {
+    setScore(score + 1);
+  }
+
+  const onQuizzFinish = () => {
+    setShowResult(true); // quizz is finished, showResult = true
+  };
+
+  function navigator() {
+    if (currentPage === "Homepage") {
+      setCurrentPage("Quizz");
+    } else if (currentPage === "Quizz" && showResult) {
+      setCurrentPage("Advertising");
+    } else if (currentPage === "Advertising") {
+      setCurrentPage("Result");
+    } else if (currentPage === "Result") {
+      setCurrentPage("Homepage");
+      setShowResult(false);
+      setScore(0);
+    }
+  }
+
+  if (currentPage === "Homepage") {
+    componentToDisplay = <Homepage />;
+    buttontext = "Quizz starten";
+  } else if (currentPage === "Quizz") {
+    componentToDisplay = (
+      <Quizz
+        onCorrectAnswer={handleCorrectAnswer}
+        onQuizzFinish={onQuizzFinish}
+      />
+    );
+    buttontext = "Ergebnis anzeigen";
+  } else if (currentPage === "Advertising") {
+    componentToDisplay = <Advertising />;
+    buttontext = "Ergebnis anzeigen";
+  } else if (currentPage === "Result") {
+    componentToDisplay = <Result score={score} />;
+    buttontext = "Noch einmal spielen";
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <div className="container">
+        <h1>👾 QuizGame</h1>
 
-export default App
+        <div className="card">{componentToDisplay}</div>
+
+        {currentPage !== "Quizz" || showResult ? (
+          <button
+            className="button-navigation"
+            onClick={navigator}
+            // disabled={currentPage === "Quizz" && !showResult}
+          >
+            {buttontext}
+          </button>
+        ) : undefined}
+      </div>
+
+      <footer>
+        <span>Made with 🩷 by Gladys, Natalie, Maria</span>
+      </footer>
+    </>
+  );
+};
+export default App;
